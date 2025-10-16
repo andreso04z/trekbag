@@ -9,13 +9,28 @@ import Sidebar from "./Sidebar";
 export default function App() {
   const [items, setItems] = useState(initialItems);
 
+  // Centralize functions for handling App actions such as:
+  // adding, marking, resetting and removing.
+  // This is to avoid spreading around the set state function.
+
+  const handleAddItem = (newItemText) => {
+    const newItem = {
+      id: new Date().getTime(),
+      name: newItemText,
+      packed: false,
+    };
+
+    const newItems = [...items, newItem];
+    setItems(newItems);
+  };
+
   return (
     <>
       <BackgroundHeading />
       <main>
         <Header />
         <ItemList items={items} />
-        <Sidebar setItems={setItems} />
+        <Sidebar handleAddItem={handleAddItem} />
       </main>
       <Footer />
     </>
