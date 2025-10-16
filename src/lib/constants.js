@@ -1,14 +1,7 @@
-export const secondaryButtons = [
-  "Mark all as complete",
-  "Mark all as incomplete",
-  "Reset to initial",
-  "Remove all items",
-];
-
 export const initialItems = [
   {
     id: 1,
-    name: "ticket",
+    name: "good mood",
     packed: true,
   },
   {
@@ -18,7 +11,7 @@ export const initialItems = [
   },
   {
     id: 3,
-    name: "sunglasses",
-    packed: true,
+    name: "phone charger",
+    packed: false,
   },
 ];

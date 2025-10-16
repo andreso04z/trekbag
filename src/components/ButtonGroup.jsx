@@ -1,16 +1,29 @@
 import Button from "./Button";
-import { secondaryButtons } from "../lib/constants.js";
 
-export default function ButtonGroup() {
+export default function ButtonGroup({
+  handleResetToInitial,
+  handleRemoveAllItems,
+  handleMarkAllAsComplete,
+  handleMarkAllAsIncomplete,
+}) {
+  const secondaryButtons = [
+    { text: "Mark all as complete", onClick: handleMarkAllAsComplete },
+    { text: "Mark all as incomplete", onClick: handleMarkAllAsIncomplete },
+    { text: "Reset to initial", onClick: handleResetToInitial },
+    { text: "Remove all items", onClick: handleRemoveAllItems },
+  ];
+
   return (
     <section className="button-group">
-      {secondaryButtons.map((text) => {
-        return (
-          <Button key={text} type="secondary">
-            {text}
-          </Button>
-        );
-      })}
+      {secondaryButtons.map((button) => (
+        <Button
+          key={button.text + button.onClick.toString()}
+          onClick={button.onClick}
+          buttonType="secondary"
+        >
+          {button.text}
+        </Button>
+      ))}
     </section>
   );
 }
