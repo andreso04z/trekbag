@@ -1,7 +1,7 @@
 export const initialItems = [
   {
     id: 1,
-    name: "good mood",
+    name: "shirt",
     packed: true,
   },
   {
