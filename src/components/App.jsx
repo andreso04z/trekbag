@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { initialItems } from "../lib/constants";
 import BackgroundHeading from "./BackgroundHeading";
 import Footer from "./Footer";
@@ -7,7 +7,9 @@ import ItemList from "./ItemList";
 import Sidebar from "./Sidebar";
 
 export default function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(
+    () => JSON.parse(localStorage.getItem("items")) || initialItems
+  );
 
   // Centralize functions for handling App actions such as:
   // adding, marking, resetting and removing.
@@ -59,11 +61,18 @@ export default function App() {
     setItems(newItems);
   };
 
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
   return (
     <>
       <BackgroundHeading />
       <main>
-        <Header />
+        <Header
+          numberOfItemsPacked={items.filter((item) => item.packed).length}
+          totalNumberOfItems={items.length}
+        />
         <ItemList
           items={items}
           handleDeleteItem={handleDeleteItem}

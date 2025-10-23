@@ -24,6 +24,7 @@ export default function AddItemForm({ onAddItem }) {
       <input
         ref={inputRef}
         value={itemText}
+        placeholder="Toothbrush..."
         onChange={(e) => {
           setItemText(e.target.value);
         }}
